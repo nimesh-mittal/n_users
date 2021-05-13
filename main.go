@@ -1,7 +1,24 @@
 package main
 
-import "fmt"
+import (
+	"n_users/handler"
+	"n_users/server"
+
+	"go.uber.org/zap"
+)
+
+func initLogger() {
+	logger, _ := zap.NewProduction()
+	zap.ReplaceGlobals(logger)
+}
 
 func main() {
-	fmt.Println("hello to user profile service")
+	initLogger()
+
+	s := server.New()
+
+	hh := handler.NewHealthHandler()
+	s.Mount("/", hh.NewHealthRouter())
+
+	s.StartServer(":8085")
 }
