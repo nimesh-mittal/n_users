@@ -37,7 +37,7 @@ User service should ensure only one and one user exist in the system, no dublica
 
 ## Architecture
 
-![image](https://user-images.githubusercontent.com/10060860/115158869-02ffbc00-a0ae-11eb-9c77-8a7fcb58ba39.png)
+![image](https://github.com/nimesh-mittal/n_users/blob/main/.github/images/user_service.png)
 
 ## Implementation
 
