@@ -21,7 +21,7 @@ import (
 )
 
 const maxUploadFileSize = int64(2 * 1024000)
-const S3ImagePrefix = "https://s3.ap-south-1.amazonaws.com/images.repo.bucket1/"
+const s3ImagePrefix = "https://s3.ap-south-1.amazonaws.com/images.repo.bucket1/"
 
 // ProfileHandler handles profile endpoints
 type ProfileHandler interface {
@@ -243,7 +243,7 @@ func (h *profileHandler) UploadProfileImage(w http.ResponseWriter, r *http.Reque
 		return
 	}
 
-	profileImageURL := S3ImagePrefix + fileName
+	profileImageURL := s3ImagePrefix + fileName
 
 	// update profile in database with image url
 	id := chi.URLParam(r, "ProfileID")

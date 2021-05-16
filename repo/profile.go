@@ -7,9 +7,11 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/jinzhu/gorm"
+	// required for postgre
 	_ "github.com/lib/pq"
 )
 
+// ProfileRepo represent interface to perform CRUD on database
 type ProfileRepo interface {
 	Create(profile entity.Profile) (string, error)
 	Delete(profileID string, tenantID string) (bool, error)
@@ -23,6 +25,7 @@ type profileRepo struct {
 	DB *gorm.DB
 }
 
+// New creates new object of ProfileRepo
 func New(dialect string, dbName string) (ProfileRepo, error) {
 	db, err := gorm.Open(dialect, dbName)
 

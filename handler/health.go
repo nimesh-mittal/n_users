@@ -7,6 +7,7 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
+// HealthHandler represents interface for health of a service
 type HealthHandler interface {
 	Home(w http.ResponseWriter, r *http.Request)
 	Health(w http.ResponseWriter, r *http.Request)
@@ -21,11 +22,11 @@ func NewHealthHandler() HealthHandler {
 }
 
 // NewHealthRouter constructs new router for health endpoints
-func (h *healthHandler) NewHealthRouter() http.Handler {
+func (hh *healthHandler) NewHealthRouter() http.Handler {
 	r := chi.NewRouter()
 
-	r.Get("/", h.Home)
-	r.Get("/_health", h.Health)
+	r.Get("/", hh.Home)
+	r.Get("/_health", hh.Health)
 	return r
 }
 

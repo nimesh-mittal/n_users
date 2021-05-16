@@ -1,10 +1,12 @@
 package mappers
 
 import (
-	"github.com/google/uuid"
 	"n_users/entity"
+
+	"github.com/google/uuid"
 )
 
+// ToProfile converts CreateProfileRequest to Profile
 func ToProfile(i entity.CreateProfileRequest) entity.Profile {
 	p := entity.Profile{}
 

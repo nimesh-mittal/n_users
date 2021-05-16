@@ -7,6 +7,7 @@ import (
 	"go.uber.org/zap"
 )
 
+// ProfileService represents interface to manage profile
 type ProfileService interface {
 	Create(profile entity.Profile) (string, error)
 	Delete(profileID string, tenantID string) (bool, error)
