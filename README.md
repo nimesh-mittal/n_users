@@ -4,12 +4,12 @@
 
 ## Background
 
-Aim of this service is to provide ability to manage users. A user can have multiple attributes like
+Aim of this service is to provide ability to manage users. A user entity contains:
 
-1. Basic attributes like location and contact information
-2. A User can maintain multiple profiles
+1. Basic attributes: location and contact information
+2. A User can have multiple profiles
 3. A User can have multiple preferences
-4. A User can have avatar or Profile Imange
+4. A User can have profile Image
 
 While this list covers some common usecases it is no way exhaustive.
 
@@ -64,21 +64,32 @@ type Interface{
 
 | Table Name | Description | Columns |
 | ------- | ---- | ---- |
-| profile | Represents user profile | (tenant_name, profile_id, profile_type, attributes..., enable, *who...*)
+| profile | Represents user profile | (tenant_name, profile_id, profile_type, *attributes...*, *who...*)
 
 where attributes are:
 
-- full name
-- gender
-- email
-- mobile
-- dob
-- city
-- country
-- address
-- profile_image_url
+- UserID          string
+- FullName        string
+- Gender          string
+- EmailID         string
+- Mobile          string
+- BirthDate       time.Time
+- CityID          string
+- CountryID       string
+- Address         string
+- Latitude        float64
+- Longitude       float64
+- ProfileImageURL string
 
-Note: expand who... as created_by, created_at, updated_by, updated_at, deleted_by, deleted_at
+Who columns are"
+
+- Active    bool
+- CreatedBy string
+- CreatedAt int64
+- UpdatedBy string
+- UpdatedAt int64
+- DeletedBy string
+- DeletedAt int64
 
 ## Database choice
 
@@ -86,7 +97,7 @@ A close look at the API request reveals large amount to read over write requests
 
 Assuming number of profiles will not exceed more than few billions and number of active users at any given time will be few millions, amount of data that needs to be store in database will be couple of billion rows which can be handle by any relational database easily.
 
-Postgres can be used to store all the user profiles. Images can we store in S3. Database table stores s3 image url as profile attribute.
+Postgres can be used to store all the user profiles. Images can be store in S3. Database table stores s3 image url as profile attribute.
 
 ## Scalability and Fault tolerance
 
@@ -120,7 +131,14 @@ This README file provides complete documentation. Link to any other documentatio
 
 ## Local Development Setup
 
+- Setup environment variables
+export AWS_REGION="ap-south-1"
+export AWS_SECRET_ID="<key here>"
+export AWS_SECRET="<secret here>"
+export POSTGRE_URL_VALUE="<url in the form postgres://userid:password@host:port/databasename>"
+
 - Start service
 ```go run main.go```
+
 - Run testcases with coverage
 ```go test ./... -cover```

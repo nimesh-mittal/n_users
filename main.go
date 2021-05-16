@@ -20,5 +20,8 @@ func main() {
 	hh := handler.NewHealthHandler()
 	s.Mount("/", hh.NewHealthRouter())
 
+	ph := handler.NewProfileHandler()
+	s.Mount("/profiles", ph.NewProfileRouter())
+
 	s.StartServer(":8085")
 }

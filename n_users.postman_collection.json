@@ -1,0 +1,175 @@
+{
+	"info": {
+		"_postman_id": "587939a5-1811-48eb-9e34-518c2ade63e7",
+		"name": "n_users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ntenant",
+						"value": "mars",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"full_name\": \"Zia Agarwal\",\n    \"gender\": \"male\",\n    \"email_id\": \"zia.mittal@gmail.com\",\n    \"mobile\": \"9994900210\",\n    \"birthdate\": \"1984-08-15T12:42:31Z\",\n    \"city_id\": \"bangalore\",\n    \"country_id\": \"india\",\n    \"address\": \"sarjapur road, bangalore, india 560035\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/profiles",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"profiles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Profile",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "ntenant",
+						"value": "mars",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8085/profiles/97dea784-e582-4009-90de-8dcd763d1e81",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"profiles",
+						"97dea784-e582-4009-90de-8dcd763d1e81"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "ntenant",
+						"value": "mars",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"sarjapur road, delhi, india\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/profiles/38215a12-280c-492c-bf28-9967aa4cb683",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"profiles",
+						"38215a12-280c-492c-bf28-9967aa4cb683"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ntenant",
+						"value": "mars",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\":\"\",\n    \"sort_by\":\"gender DESC\",\n    \"limit\":10,\n    \"offset\":0\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/profiles/_search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"profiles",
+						"_search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile Image Upload",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"type": "file",
+							"src": "/Users/nimesh/Documents/elastic service.png"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8085/profiles/e536e5df-d9a6-410f-ae14-84f622c0f672/_upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8085",
+					"path": [
+						"profiles",
+						"e536e5df-d9a6-410f-ae14-84f622c0f672",
+						"_upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
