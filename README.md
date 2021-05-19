@@ -142,3 +142,8 @@ export POSTGRE_URL_VALUE="<url in the form postgres://userid:password@host:port/
 
 - Run testcases with coverage
 ```go test ./... -cover```
+
+- How to generate mocks in local
+```go get github.com/golang/mock/gomock```
+```go get github.com/golang/mock/mockgen```
+```<path to bin>/mockgen -destination=mocks/mock_profilerepo.go -package=mocks n_users/repo ProfileRepo```
